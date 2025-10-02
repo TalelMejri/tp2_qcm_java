@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package java_package;
 
 import java.util.*;
@@ -16,35 +12,42 @@ public class Question {
     private String ennonce;
     
     public Question(String en){
-        ennonce=en;
-        options=new ArrayList();
+        ennonce = en;
+        options = new ArrayList<>();
     }
-    public void ajouterquestion(String response){
-        options.add(response);
+    
+    public void ajouterOption(String option){
+        options.add(option);
     }
+    
     public boolean lireResponseAuClavier(Scanner sc){
-        System.out.println("Donner le numero de votre reponse : ");
-        int rep=sc.nextInt();
-        return rep==pos;
+        System.out.println("Donner le numero de votre reponse (1-" + options.size() + "): ");
+        int rep = sc.nextInt();
+        return rep == pos;
     }
+    
     public int getPos(){
         return this.pos;
     }
-    public void SetPos(int pos){
-        this.pos=pos;
+    
+    public void setPos(int pos){
+        this.pos = pos;
     }
-     public String getEnonnce(){
+    
+    public String getEnnonce(){
         return this.ennonce;
     }
-    public void SetEnnoce(String en){
-        this.ennonce=en;
+    
+    public void setEnnonce(String en){
+        this.ennonce = en;
     }  
+    
     @Override
     public String toString(){
-        String str=getEnonnce()+"\n";
-        for(String alt:options){
-            str=alt+"\n";
+        StringBuilder str = new StringBuilder(getEnnonce() + "\n");
+        for(int i = 0; i < options.size(); i++){
+            str.append((i + 1)).append(". ").append(options.get(i)).append("\n");
         }
-        return str;
+        return str.toString();
     }
 }
